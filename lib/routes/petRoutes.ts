@@ -15,7 +15,14 @@ export class Routes {
             });
         });
         app.route('/pets')
-.get(this.PetController.getPet)
-.post(this.PetController.addPet);
+        .get(this.PetController.getPet)
+        .post(this.PetController.addPet);
+        app.route('/pets/petById/:petId')
+        .get(this.PetController.getPetById)
+        .put(this.PetController.updatePet)
+        .delete(this.PetController.deletePet);
+        app.route('/pets/petByName/:petName')
+        .get(this.PetController.getPetByName);
+
     }
 }
