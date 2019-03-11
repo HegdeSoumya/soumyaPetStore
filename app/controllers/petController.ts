@@ -1,4 +1,4 @@
-import { response } from 'express';
+import { Request, Response } from 'express';
 import PetService from '../services/petService';
 
 // tslint:disable-next-line:class-name
@@ -8,20 +8,13 @@ export class petController {
     public constructor(petService: PetService) {
         this.petService = petService;
     }
-    // public getPet = () => {
-    //     try {
-    //         const pets = this.petService.getPet();
-    //         response.status(200).json(pets);
-    //     } catch (error) {
-    //         response.status(500).send(error);
-    //     }
-    // }
-    public getPet = () => {
+
+    public getPet = async (req: Request, res: Response) => {
         try {
-            const pet = this.petService.getPet();
-            response.status(200).json(pet);
+            const pet = await this.petService.getPet();
+            res.status(200).json(pet);
         } catch (error) {
-            response.status(500).send(error);
+            res.status(500).send(error);
         }
     }
 }

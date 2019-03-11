@@ -1,5 +1,5 @@
 import { petController } from './controllers/petController';
-import PetRepository from './repositories/petRepository';
+import { PetRepository } from './repositories/petRepository';
 import { PetService } from './services/petService';
 
 class Wiring {
