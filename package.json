@@ -22,6 +22,7 @@
   "homepage": "https://github.com/HegdeSoumya/soumyaPetStore#readme",
   "dependencies": {
     "@types/express": "^4.16.1",
+    "@types/mongodb": "^3.1.21",
     "body-parser": "^1.18.3",
     "chai-http": "^4.2.1",
     "express": "^4.16.4",

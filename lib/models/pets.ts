@@ -17,3 +17,6 @@ export const petSchema = new Schema({
         default: Date.now,
     },
 });
+
+const Pet = mongoose.model('Pet', petSchema);
+export default Pet;
