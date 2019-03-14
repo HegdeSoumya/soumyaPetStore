@@ -73,23 +73,23 @@
     "/pets/ById/{petId}": {
       "parameters": [
         {
-          "name": "userId",
+          "name": "petId",
           "in": "path",
           "required": true,
-          "description": "ID of user that we want to find",
+          "description": "ID of pet that we want to find",
           "type": "string"
         }
       ],
       "get": {
         "tags": [
-          "Users"
+          "Pets"
         ],
-        "summary": "Get user with given ID",
+        "summary": "Get pet with given ID",
         "responses": {
           "200": {
-            "description": "User is found",
+            "description": "Pet is found",
             "schema": {
-              "$ref": "#/definitions/User"
+              "$ref": "#/definitions/Pet"
             }
           }
         }

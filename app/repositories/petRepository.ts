@@ -5,6 +5,10 @@ export class PetRepository {
         return Pet.find({});
     }
 
+    public getPetById = (id: string) => {
+        return Pet.findById(id);
+    }
+
 }
 
 export default PetRepository;

@@ -13,6 +13,13 @@ export class PetService {
             throw error;
         }
     }
+    public getPetById = (id: string) => {
+        try {
+            return this.petRepository.getPetById(id);
+        } catch (error) {
+            throw error;
+        }
+    }
 }
 
 export default PetService;
