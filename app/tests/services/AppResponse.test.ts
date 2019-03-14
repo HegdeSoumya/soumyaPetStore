@@ -2,8 +2,8 @@ import chai from 'chai';
 import chatAsPromised from 'chai-as-promised';
 import sinon from 'sinon';
 import { mockReq, mockRes } from 'sinon-express-mock';
-import {AppResponse} from './../../services/AppResponse';
-// const expect = chai.expect;
+import {AppResponse} from '../../services/appResponse';
+const expect = chai.expect;
 chai.use(chatAsPromised);
 
 describe('AppResponse Service Test', async () => {
@@ -24,7 +24,6 @@ describe('AppResponse Service Test', async () => {
         const data = {};
         const envelope = {
             status: 'SUCCESS',
-            // tslint:disable-next-line:object-literal-sort-keys
             data,
         };
 
@@ -42,12 +41,10 @@ describe('AppResponse Service Test', async () => {
         const statusCode = 500;
         const envelope = {
             status: 'ERROR',
-            // tslint:disable-next-line:object-literal-sort-keys
             data: {
                 error: {
                     code,
                     message,
-                    // tslint:disable-next-line:object-literal-sort-keys
                     description,
                 },
             },
@@ -67,12 +64,10 @@ describe('AppResponse Service Test', async () => {
         const statusCode = 422;
         const envelope = {
             status: 'FAILURE',
-            // tslint:disable-next-line:object-literal-sort-keys
             data: {
                 error: {
                     code,
                     message,
-                    // tslint:disable-next-line:object-literal-sort-keys
                     description,
                 },
             },
@@ -92,12 +87,10 @@ describe('AppResponse Service Test', async () => {
         const statusCode = 400;
         const envelope = {
             status: 'FAILURE',
-            // tslint:disable-next-line:object-literal-sort-keys
             data: {
                 error: {
                     code,
                     message,
-                    // tslint:disable-next-line:object-literal-sort-keys
                     description,
                 },
             },
@@ -117,12 +110,10 @@ describe('AppResponse Service Test', async () => {
         const statusCode = 409;
         const envelope = {
             status: 'FAILURE',
-            // tslint:disable-next-line:object-literal-sort-keys
             data: {
                 error: {
                     code,
                     message,
-                    // tslint:disable-next-line:object-literal-sort-keys
                     description,
                 },
             },
@@ -156,12 +147,10 @@ describe('AppResponse Service Test', async () => {
         const statusCode = 404;
         const envelope = {
             status: 'FAILURE',
-            // tslint:disable-next-line:object-literal-sort-keys
             data: {
                 error: {
                     code,
                     message,
-                    // tslint:disable-next-line:object-literal-sort-keys
                     description,
                 },
             },

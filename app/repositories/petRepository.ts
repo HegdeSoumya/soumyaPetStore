@@ -1,4 +1,4 @@
-import Pet from '../models/pets';
+import Pet from '../models/pet';
 
 export class PetRepository {
     public getPet = () => {
@@ -7,6 +7,10 @@ export class PetRepository {
 
     public getPetById = (id: string) => {
         return Pet.findById(id);
+    }
+
+    public addPet = (newPet: any) => {
+        return newPet.save();
     }
 
 }

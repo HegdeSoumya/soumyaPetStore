@@ -12,7 +12,6 @@ export class AppResponse {
     public success = (res: Response, data: any) => {
         res.status(this.SUCCESS).send({
             status: 'SUCCESS',
-            // tslint:disable-next-line:object-literal-sort-keys
             data,
         });
     }
@@ -20,12 +19,10 @@ export class AppResponse {
     public error = (res: Response, code: string, message: string, description: string = '') => {
         res.status(this.INTERNAL_SERVER_ERROR).send({
             status: 'ERROR',
-            // tslint:disable-next-line:object-literal-sort-keys
             data: {
                 error: {
                     code,
                     message,
-                    // tslint:disable-next-line:object-literal-sort-keys
                     description,
                 },
             },
@@ -35,12 +32,10 @@ export class AppResponse {
     public unprocessableEntity = (res: Response, code: string, message: string, description: string = '') => {
         res.status(this.UNPROCESSABLE_ENTITY).send({
             status: 'FAILURE',
-            // tslint:disable-next-line:object-literal-sort-keys
             data: {
                 error: {
                     code,
                     message,
-                    // tslint:disable-next-line:object-literal-sort-keys
                     description,
                 },
             },
@@ -50,12 +45,10 @@ export class AppResponse {
     public badRequest = (res: Response, code: string, message: string, description: string = '') => {
         res.status(this.BAD_REQUEST).send({
             status: 'FAILURE',
-            // tslint:disable-next-line:object-literal-sort-keys
             data: {
                 error: {
                     code,
                     message,
-                    // tslint:disable-next-line:object-literal-sort-keys
                     description,
                 },
             },
@@ -65,12 +58,10 @@ export class AppResponse {
     public conflict = (res: Response, code: string, message: string, description: string = '') => {
         res.status(this.CONFLICT).send({
             status: 'FAILURE',
-            // tslint:disable-next-line:object-literal-sort-keys
             data: {
                 error: {
                     code,
                     message,
-                    // tslint:disable-next-line:object-literal-sort-keys
                     description,
                 },
             },
@@ -84,12 +75,10 @@ export class AppResponse {
     public notFound = (res: Response, code: string, message: string, description: string = '') => {
         res.status(this.NOT_FOUND).send({
             status: 'FAILURE',
-            // tslint:disable-next-line:object-literal-sort-keys
             data: {
                 error: {
                     code,
                     message,
-                    // tslint:disable-next-line:object-literal-sort-keys
                     description,
                 },
             },

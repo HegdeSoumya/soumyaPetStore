@@ -20,6 +20,13 @@ export class PetService {
             throw error;
         }
     }
+    public addPet = (newPet: any) => {
+        try {
+            this.petRepository.addPet(newPet);
+        } catch (error) {
+            throw error;
+        }
+    }
 }
 
 export default PetService;

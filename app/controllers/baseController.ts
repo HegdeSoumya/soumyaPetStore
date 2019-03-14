@@ -1,4 +1,4 @@
-import {AppResponse} from './../services/AppResponse';
+import {AppResponse} from './../services/appResponse';
 
 export default class BaseController {
     protected appResponse: AppResponse;

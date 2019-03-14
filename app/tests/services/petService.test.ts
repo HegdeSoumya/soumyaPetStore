@@ -15,7 +15,6 @@ describe('Pet Service Test', () => {
             {
                 id: 1,
                 name: 'ANIMAL',
-                // tslint:disable-next-line:object-literal-sort-keys
                 category: {
                     categoryName: 'ANIMAL_CATEGORY',
                 },
@@ -38,6 +37,5 @@ describe('Pet Service Test', () => {
         const error = new Error();
         await stubPetRepository.getPet.throws(error);
         await expect(new PetService(stubPetRepository).getPet()).to.be.rejected;
-        // sinon.assert.calledOnce(stubPetRepository.getPet);
     });
 });

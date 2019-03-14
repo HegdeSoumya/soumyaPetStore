@@ -30,16 +30,16 @@
     "/pets": {
       "post": {
         "tags": [
-          "Users"
+          "Pets"
         ],
-        "description": "Create new user in system",
+        "description": "Create new pet in system",
         "parameters": [
           {
-            "name": "user",
+            "name": "pet",
             "in": "body",
-            "description": "User that we want to create",
+            "description": "Pet details that we want to enter",
             "schema": {
-              "$ref": "#/definitions/User"
+              "$ref": "#/definitions/Pet"
             }
           }
         ],
@@ -48,9 +48,9 @@
         ],
         "responses": {
           "200": {
-            "description": "New user is created",
+            "description": "New pet is created",
             "schema": {
-              "$ref": "#/definitions/User"
+              "$ref": "#/definitions/Pet"
             }
           }
         }
