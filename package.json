@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --require ts-node/register --watch-extensions ts 'test/**/*.ts'",
+    "test": "mocha --require ts-node/register --watch-extensions ts './app/test/**/*.ts'",
     "build": "tsc",
     "dev": "ts-node ./app/server.ts",
     "start": "nodemon ./dist/server.js",
@@ -27,14 +27,18 @@
     "chai-http": "^4.2.1",
     "express": "^4.16.4",
     "mongoose": "^5.4.17",
-    "nodemon": "^1.18.10"
+    "nodemon": "^1.18.10",
+    "swagger-ui-express": "^4.0.2"
   },
   "devDependencies": {
     "@types/chai": "^4.1.7",
     "@types/chai-http": "^3.0.5",
     "@types/mocha": "^5.2.6",
     "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
     "mocha": "^6.0.2",
+    "sinon": "^7.2.7",
+    "sinon-express-mock": "^2.1.0",
     "ts-node": "^8.0.2",
     "tslint": "^5.13.1",
     "typescript": "^3.2.2"

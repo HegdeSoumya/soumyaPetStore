@@ -1,20 +1,27 @@
 import { Request, Response } from 'express';
 import PetService from '../services/petService';
+import AppConstants from './../constants/AppConstants';
+import BaseController from './baseController';
 
 // tslint:disable-next-line:class-name
-export class petController {
+export class petController extends BaseController {
     private petService: PetService;
 
     public constructor(petService: PetService) {
+        super();
         this.petService = petService;
     }
 
     public getPet = async (req: Request, res: Response) => {
         try {
             const pet = await this.petService.getPet();
-            res.status(200).json(pet);
+            return this.appResponse.success(res, {pet});
         } catch (error) {
-            res.status(500).send(error);
+            return this.appResponse.error (
+                res,
+                AppConstants.ERROR_CODES.ERR_INTERNAL_SERVER_ERROR,
+                res.__(AppConstants.ERROR_MESSAGES.ERR_INTERNAL_SERVER_ERROR),
+            );
         }
     }
 }
