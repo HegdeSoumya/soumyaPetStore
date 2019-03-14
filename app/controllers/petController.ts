@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
+import mongoose from 'mongoose';
 import AppConstants from '../constants/appConstants';
 import Pet from '../models/pet';
 import PetService from '../services/petService';
 import BaseController from './baseController';
 
-// tslint:disable-next-line:class-name
 export class PetController extends BaseController {
     private petService: PetService;
 
@@ -40,9 +40,19 @@ export class PetController extends BaseController {
         }
     }
 
-    public addPet = async (req: Request, res: Response) => {
+    public addPet = (req: Request, res: Response) => {
         try {
-            const newPet = new Pet(req.body);
+            const newPet = new Pet({
+                _id : new mongoose.Types.ObjectId(),
+                category: {
+                    categoryId : new mongoose.Types.ObjectId(),
+                    categoryName: req.body.category.categoryName,
+                },
+                name: req.body.name,
+                photoUrl: req.body.photoUrl,
+                status: req.body.status,
+            });
+            this.petService.addPet(newPet);
             return this.appResponse.success(res, {newPet});
         } catch (error) {
             return this.appResponse.error (

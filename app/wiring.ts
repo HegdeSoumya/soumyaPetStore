@@ -1,10 +1,10 @@
-import { petController } from './controllers/petController';
+import { PetController } from './controllers/petController';
 import { PetRepository } from './repositories/petRepository';
 import { PetService } from './services/petService';
 
 class Wiring {
     public petController() {
-        return new petController(this.petService());
+        return new PetController(this.petService());
     }
     public petService() {
         return new PetService(this.petRepository());

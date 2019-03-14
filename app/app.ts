@@ -10,8 +10,6 @@ export default class App {
 
     public app: express.Application;
     public routes: Routes = new Routes();
-    // public routePrv: Routes = new Routes();
-    // public mongoUrl: string = 'mongodb://localhost/CRMdb';
     public mongoUrl: string = 'mongodb://127.0.0.1:27017/petstore';
 
     constructor() {
@@ -25,7 +23,6 @@ export default class App {
     private config(): void {
         this.app.use(bodyParser.json());
         this.app.use(bodyParser.urlencoded({ extended: false }));
-        // serving static files
         this.app.use(express.static('public'));
     }
 
@@ -38,6 +35,5 @@ export default class App {
     }
     private swaggerSetup(): void {
         this.app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-        // this.app.use('/pets', this.routes.routes);
     }
 }
