@@ -27,6 +27,13 @@ export class PetService {
             throw error;
         }
     }
+    public getPetByName = (name: string) => {
+        try {
+            return this.petRepository.getPetByName(name);
+        } catch (error) {
+            throw error;
+        }
+    }
 }
 
 export default PetService;

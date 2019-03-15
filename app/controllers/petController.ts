@@ -40,7 +40,7 @@ export class PetController extends BaseController {
         }
     }
 
-    public addPet = (req: Request, res: Response) => {
+    public addPet = async (req: Request, res: Response) => {
         try {
             const newPet = new Pet({
                 _id : new mongoose.Types.ObjectId(),
@@ -52,8 +52,23 @@ export class PetController extends BaseController {
                 photoUrl: req.body.photoUrl,
                 status: req.body.status,
             });
-            this.petService.addPet(newPet);
+            await this.petService.addPet(newPet);
             return this.appResponse.success(res, {newPet});
+        } catch (error) {
+            return this.appResponse.error (
+                res,
+                AppConstants.ERROR_CODES.ERR_INTERNAL_SERVER_ERROR,
+                res.__(AppConstants.ERROR_MESSAGES.ERR_INTERNAL_SERVER_ERROR),
+            );
+        }
+    }
+
+    public getPetByName = async (req: Request, res: Response) => {
+        try {
+            let name = req.params.petName;
+            name = '^' + name;
+            const pet = await this.petService.getPetByName(name);
+            return this.appResponse.success(res, {pet});
         } catch (error) {
             return this.appResponse.error (
                 res,

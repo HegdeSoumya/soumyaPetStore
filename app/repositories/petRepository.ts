@@ -13,6 +13,10 @@ export class PetRepository {
         return newPet.save();
     }
 
+    public getPetByName = (name: string) => {
+        return Pet.find({name: {$regex: name}});
+    }
+
 }
 
 export default PetRepository;
