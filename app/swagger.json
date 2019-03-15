@@ -94,21 +94,6 @@
           }
         }
       },
-      
-      "delete": {
-        "summary": "Delete user with given ID",
-        "tags": [
-          "Users"
-        ],
-        "responses": {
-          "200": {
-            "description": "User is deleted",
-            "schema": {
-              "$ref": "#/definitions/User"
-            }
-          }
-        }
-      },
       "put": {
         "summary": "Update user with give ID",
         "tags": [
@@ -158,7 +143,56 @@
         }
       }
     }
-   } 
+   },
+   "/pets/{petId}": {
+    "parameters": [
+      {
+        "name": "petId",
+        "in": "path",
+        "required": true,
+        "description": "ID of pet that we want to find",
+        "type": "string"
+      }
+    ],
+    "delete": {
+      "summary": "Delete pet details with given ID",
+      "tags": [
+        "Pets"
+      ],
+      "responses": {
+        "200": {
+          "description": "Pet is deleted",
+          "schema": {
+            "$ref": "#/definitions/Pet"
+          }
+        }
+      }
+    },
+    "put": {
+      "summary": "Update user with given name",
+      "tags": [
+        "Pets"
+      ],
+      "parameters": [
+        {
+          "name": "id",
+          "in": "body",
+          "description": "Pet with new values of properties",
+          "schema": {
+            "$ref": "#/definitions/Pet"
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Pet details updated",
+          "schema": {
+            "$ref": "#/definitions/Pet"
+          }
+        }
+      }
+    }
+   }
   },
   "definitions": {
     "Pet": {
