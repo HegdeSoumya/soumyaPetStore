@@ -21,6 +21,10 @@ export class PetRepository {
         return Pet.findByIdAndDelete(id);
     }
 
+    public updatePet = (id: string, body: any) => {
+        return Pet.findByIdAndUpdate({_id: id}, {$set: body});
+    }
+
 }
 
 export default PetRepository;

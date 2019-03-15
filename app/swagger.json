@@ -2,10 +2,10 @@
   "swagger": "2.0",
   "info": {
     "version": "1.0.0",
-    "title": "Yet Another Node.js Blogg Application API",
-    "description": "Yet Another Node.js Blogg Application API",
+    "title": "PET STORE",
+    "description": "Node.js Application API for Pet Store",
     "license": {
-      "name": "MIT",
+      "name": "Soumya",
       "url": "https://opensource.org/licenses/MIT"
     }
   },
@@ -169,7 +169,7 @@
       }
     },
     "put": {
-      "summary": "Update user with given name",
+      "summary": "Update pet details with given name",
       "tags": [
         "Pets"
       ],

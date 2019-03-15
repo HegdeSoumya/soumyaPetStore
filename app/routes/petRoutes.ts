@@ -6,6 +6,7 @@ export class Routes {
         app.get('/pets/ById/:petId', wiring.petController().getPetById);
         app.post('/pets', wiring.petController().addPet);
         app.get('/pets/ByName/:petName', wiring.petController().getPetByName);
-        app.delete('/pets/:id', wiring.petController().deletePet);
+        app.delete('/pets/:petId', wiring.petController().deletePet);
+        app.put('/pets/:petId', wiring.petController().updatePet);
     }
 }

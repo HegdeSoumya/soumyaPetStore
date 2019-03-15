@@ -41,6 +41,14 @@ export class PetService {
             throw error;
         }
     }
+
+    public updatePet = (id: string, body: any) => {
+        try {
+            return this.petRepository.updatePet(id, body);
+        } catch (error) {
+            throw error;
+        }
+    }
 }
 
 export default PetService;

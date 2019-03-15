@@ -4,6 +4,7 @@ import AppConstants from '../constants/appConstants';
 import Pet from '../models/pet';
 import PetService from '../services/petService';
 import BaseController from './baseController';
+import { stringify } from 'querystring';
 
 export class PetController extends BaseController {
     private petService: PetService;
@@ -83,6 +84,21 @@ export class PetController extends BaseController {
             const id = req.params.id;
             await this.petService.deletePet(id);
             return this.appResponse.success(res, 'pet deleted successfully');
+        } catch (error) {
+            return this.appResponse.error (
+                res,
+                AppConstants.ERROR_CODES.ERR_INTERNAL_SERVER_ERROR,
+                res.__(AppConstants.ERROR_MESSAGES.ERR_INTERNAL_SERVER_ERROR),
+            );
+        }
+    }
+
+    public updatePet = async (req: Request, res: Response) => {
+        try {
+            const id = req.params.petId;
+            const body = req.body;
+            const pet = await this.petService.updatePet(id, body);
+            return this.appResponse.success(res, {pet});
         } catch (error) {
             return this.appResponse.error (
                 res,
