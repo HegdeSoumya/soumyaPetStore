@@ -17,6 +17,10 @@ export class PetRepository {
         return Pet.find({name: {$regex: name}});
     }
 
+    public deletePet = (id: string) => {
+        return Pet.findByIdAndDelete(id);
+    }
+
 }
 
 export default PetRepository;

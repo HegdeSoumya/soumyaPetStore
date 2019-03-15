@@ -34,6 +34,13 @@ export class PetService {
             throw error;
         }
     }
+    public deletePet = (id: string) => {
+        try {
+            return this.petRepository.deletePet(id);
+        } catch (error) {
+            throw error;
+        }
+    }
 }
 
 export default PetService;

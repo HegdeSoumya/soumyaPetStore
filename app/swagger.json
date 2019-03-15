@@ -9,7 +9,7 @@
       "url": "https://opensource.org/licenses/MIT"
     }
   },
-  "host": "localhost:8080",
+  "host": "localhost:8081",
   "basePath": "/",
   "tags": [
     {
@@ -94,6 +94,7 @@
           }
         }
       },
+      
       "delete": {
         "summary": "Delete user with given ID",
         "tags": [
@@ -132,7 +133,32 @@
           }
         }
       }
+    },
+   "/pets/ByName/{petName}": {
+    "parameters": [
+      {
+        "name": "petName",
+        "in": "path",
+        "required": true,
+        "description": "Name of pet that we want to find",
+        "type": "string"
+      }
+    ],
+    "get": {
+      "tags": [
+        "Pets"
+      ],
+      "summary": "Get pet with given name",
+      "responses": {
+        "200": {
+          "description": "Pet is found",
+          "schema": {
+            "$ref": "#/definitions/Pet"
+          }
+        }
+      }
     }
+   } 
   },
   "definitions": {
     "Pet": {
