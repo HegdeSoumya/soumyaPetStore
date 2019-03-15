@@ -4,7 +4,6 @@ import AppConstants from '../constants/appConstants';
 import Pet from '../models/pet';
 import PetService from '../services/petService';
 import BaseController from './baseController';
-import { stringify } from 'querystring';
 
 export class PetController extends BaseController {
     private petService: PetService;

@@ -9,7 +9,7 @@
       "url": "https://opensource.org/licenses/MIT"
     }
   },
-  "host": "localhost:8081",
+  "host": "localhost:3000",
   "basePath": "/",
   "tags": [
     {
@@ -93,30 +93,6 @@
             }
           }
         }
-      },
-      "put": {
-        "summary": "Update user with give ID",
-        "tags": [
-          "Users"
-        ],
-        "parameters": [
-          {
-            "name": "user",
-            "in": "body",
-            "description": "User with new values of properties",
-            "schema": {
-              "$ref": "#/definitions/User"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "User is updated",
-            "schema": {
-              "$ref": "#/definitions/User"
-            }
-          }
-        }
       }
     },
    "/pets/ByName/{petName}": {
@@ -169,13 +145,13 @@
       }
     },
     "put": {
-      "summary": "Update pet details with given name",
+      "summary": "Update petDetails with give ID",
       "tags": [
         "Pets"
       ],
       "parameters": [
         {
-          "name": "id",
+          "name": "pet",
           "in": "body",
           "description": "Pet with new values of properties",
           "schema": {
@@ -185,7 +161,7 @@
       ],
       "responses": {
         "200": {
-          "description": "Pet details updated",
+          "description": "Pet is updated",
           "schema": {
             "$ref": "#/definitions/Pet"
           }
