@@ -13,7 +13,7 @@
   "basePath": "/",
   "tags": [
     {
-      "name": "Users",
+      "name": "Pets",
       "description": "API for pets in the system"
     }
   ],
