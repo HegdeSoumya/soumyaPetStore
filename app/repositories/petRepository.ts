@@ -10,7 +10,7 @@ export class PetRepository {
     }
 
     public addPet = (newPet: any) => {
-        return newPet.save();
+        return Pet.create(newPet);
     }
 
     public getPetByName = (name: string) => {

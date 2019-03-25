@@ -6,45 +6,45 @@ export class PetService {
     public constructor(petRepository: PetRepository) {
         this.petRepository = petRepository;
     }
-    public getPet = () => {
+    public getPet = async () => {
         try {
-            return this.petRepository.getPet();
+            return await this.petRepository.getPet();
         } catch (error) {
             throw error;
         }
     }
-    public getPetById = (id: string) => {
+    public getPetById = async (id: string) => {
         try {
-            return this.petRepository.getPetById(id);
+            return await this.petRepository.getPetById(id);
         } catch (error) {
             throw error;
         }
     }
-    public addPet = (newPet: any) => {
+    public addPet = async (newPet: any) => {
         try {
-            this.petRepository.addPet(newPet);
+            await this.petRepository.addPet(newPet);
         } catch (error) {
             throw error;
         }
     }
-    public getPetByName = (name: string) => {
+    public getPetByName = async (name: string) => {
         try {
-            return this.petRepository.getPetByName(name);
+            return await this.petRepository.getPetByName(name);
         } catch (error) {
             throw error;
         }
     }
-    public deletePet = (id: string) => {
+    public deletePet = async (id: string) => {
         try {
-            return this.petRepository.deletePet(id);
+            return await this.petRepository.deletePet(id);
         } catch (error) {
             throw error;
         }
     }
 
-    public updatePet = (id: string, body: any) => {
+    public updatePet = async (id: string, body: any) => {
         try {
-            return this.petRepository.updatePet(id, body);
+            return await this.petRepository.updatePet(id, body);
         } catch (error) {
             throw error;
         }

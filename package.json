@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --require ts-node/register --watch-extensions ts './app/test/**/*.ts'",
+    "test": "mocha --require ts-node/register --watch-extensions ts './app/tests/**/*.ts'",
     "build": "tsc",
     "dev": "ts-node ./app/server.ts",
     "start": "nodemon ./dist/server.js",
@@ -37,6 +37,7 @@
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
     "mocha": "^6.0.2",
+    "mock-express-response": "^0.2.2",
     "sinon": "^7.2.7",
     "sinon-express-mock": "^2.1.0",
     "ts-node": "^8.0.2",

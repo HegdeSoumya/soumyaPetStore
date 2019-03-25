@@ -20,19 +20,19 @@ export class PetController extends BaseController {
         } catch (error) {
             if (error) {
                 if (error.code === AppConstants.ERROR_CODES.BAD_REQUEST) {
-                    return this.appResponse.conflict(
+                    return this.appResponse.badRequest(
                         res,
                         error.code,
                         res.__(error.message),
                     );
                 } else if (error.code === AppConstants.ERROR_CODES.NOT_FOUND) {
-                    return this.appResponse.conflict(
+                    return this.appResponse.notFound(
                         res,
                         error.code,
                         res.__(error.message),
                     );
                 } else if (error.code === AppConstants.ERROR_CODES.ERR_INTERNAL_SERVER_ERROR) {
-                    return this.appResponse.conflict(
+                    return this.appResponse.error(
                         res,
                         error.code,
                         res.__(error.message),
@@ -52,19 +52,19 @@ export class PetController extends BaseController {
         } catch (error) {
             if (error) {
                 if (error.code === AppConstants.ERROR_CODES.NOT_FOUND) {
-                    return this.appResponse.conflict(
+                    return this.appResponse.notFound(
                         res,
                         error.code,
                         res.__(error.message),
                     );
                 } else if (error.code === AppConstants.ERROR_CODES.ERR_INTERNAL_SERVER_ERROR) {
-                    return this.appResponse.conflict(
+                    return this.appResponse.error(
                         res,
                         error.code,
                         res.__(error.message),
                     );
                 } else if (error.code === AppConstants.ERROR_CODES.UNPROCESSABLE_ENTITY) {
-                    return this.appResponse.conflict(
+                    return this.appResponse.unprocessableEntity(
                         res,
                         error.code,
                         res.__(error.message),
@@ -93,13 +93,13 @@ export class PetController extends BaseController {
         } catch (error) {
             if (error) {
                 if (error.code === AppConstants.ERROR_CODES.ERR_INTERNAL_SERVER_ERROR) {
-                    return this.appResponse.conflict(
+                    return this.appResponse.error(
                         res,
                         error.code,
                         res.__(error.message),
                     );
                 } else if (error.code === AppConstants.ERROR_CODES.UNPROCESSABLE_ENTITY) {
-                    return this.appResponse.conflict(
+                    return this.appResponse.unprocessableEntity(
                         res,
                         error.code,
                         res.__(error.message),
@@ -120,19 +120,19 @@ export class PetController extends BaseController {
         } catch (error) {
             if (error) {
                 if (error.code === AppConstants.ERROR_CODES.NOT_FOUND) {
-                    return this.appResponse.conflict(
+                    return this.appResponse.notFound(
                         res,
                         error.code,
                         res.__(error.message),
                     );
                 } else if (error.code === AppConstants.ERROR_CODES.ERR_INTERNAL_SERVER_ERROR) {
-                    return this.appResponse.conflict(
+                    return this.appResponse.error(
                         res,
                         error.code,
                         res.__(error.message),
                     );
                 } else if (error.code === AppConstants.ERROR_CODES.UNPROCESSABLE_ENTITY) {
-                    return this.appResponse.conflict(
+                    return this.appResponse.unprocessableEntity(
                         res,
                         error.code,
                         res.__(error.message),
@@ -152,19 +152,19 @@ export class PetController extends BaseController {
         } catch (error) {
             if (error) {
                 if (error.code === AppConstants.ERROR_CODES.NOT_FOUND) {
-                    return this.appResponse.conflict(
+                    return this.appResponse.notFound(
                         res,
                         error.code,
                         res.__(error.message),
                     );
                 } else if (error.code === AppConstants.ERROR_CODES.ERR_INTERNAL_SERVER_ERROR) {
-                    return this.appResponse.conflict(
+                    return this.appResponse.error(
                         res,
                         error.code,
                         res.__(error.message),
                     );
                 } else if (error.code === AppConstants.ERROR_CODES.UNPROCESSABLE_ENTITY) {
-                    return this.appResponse.conflict(
+                    return this.appResponse.unprocessableEntity(
                         res,
                         error.code,
                         res.__(error.message),
@@ -185,19 +185,19 @@ export class PetController extends BaseController {
         } catch (error) {
             if (error) {
                 if (error.code === AppConstants.ERROR_CODES.NOT_FOUND) {
-                    return this.appResponse.conflict(
+                    return this.appResponse.notFound(
                         res,
                         error.code,
                         res.__(error.message),
                     );
                 } else if (error.code === AppConstants.ERROR_CODES.ERR_INTERNAL_SERVER_ERROR) {
-                    return this.appResponse.conflict(
+                    return this.appResponse.error(
                         res,
                         error.code,
                         res.__(error.message),
                     );
                 } else if (error.code === AppConstants.ERROR_CODES.UNPROCESSABLE_ENTITY) {
-                    return this.appResponse.conflict(
+                    return this.appResponse.unprocessableEntity(
                         res,
                         error.code,
                         res.__(error.message),
