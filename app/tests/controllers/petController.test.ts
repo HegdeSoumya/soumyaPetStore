@@ -120,4 +120,484 @@ describe('Pet Controller Test', () => {
             expect(response).equal(failedResponse);
         });
     });
+
+    describe('get pets by ID Controller', () => {
+        before(() => {
+            req = {
+                params: {
+                    petId: 'wiqrt',
+                },
+            };
+        });
+        it('should return pets by ID', async () => {
+            const successResponse = {
+                status: 'SUCCESS',
+                data: {
+                    pets: [
+                        {
+                            _id: 'sdfs',
+                            name: 'ANIMAL',
+                            category: {
+                                categoryName: 'ANIMAL_CATEGORY',
+                            },
+                            photoUrl: 'PHOTO',
+                            status: 'STATUS',
+                        },
+                    ],
+                },
+            };
+            const pets = [
+                {
+                    _id: 'sdfs',
+                    name: 'ANIMAL',
+                    category: {
+                        categoryName: 'ANIMAL_CATEGORY',
+                    },
+                    photoUrl: 'PHOTO',
+                    status: 'STATUS',
+                }];
+            await stubPetService.getPetById.returns(pets);
+            const stubSuccess = await sinon.stub(petController.appResponse, 'success').returns(successResponse);
+            const response = await petController.getPetById(req as any, res);
+            sinon.assert.calledOnce(stubPetService.getPetById);
+            sinon.assert.calledOnce(stubSuccess);
+            expect(response).to.be.a('object');
+            expect(response.status).to.be.eql('SUCCESS');
+            expect(response.data).to.be.a('object');
+            expect(response.data.pets).to.be.an('array');
+            expect(response.data.pets).deep.equals(pets);
+            expect(response).equal(successResponse);
+        });
+
+        it('should throw error in case of service error', async () => {
+            const failedResponse = {
+                status: 'ERROR',
+                data: { error: { code: 'ERR_INTERNAL_SERVER_ERROR', message: 'Internal Server Error', description: '' } },
+            };
+            const error = {
+                code: AppConstants.ERROR_CODES.ERR_INTERNAL_SERVER_ERROR,
+            };
+            stubPetService.getPetById.throws(error);
+            const stubError = await sinon.stub(petController.appResponse, 'error')
+                .returns(failedResponse);
+            const response = await petController.getPetById(req as any, res as any);
+            sinon.assert.calledOnce(stubPetService.getPetById);
+            sinon.assert.calledOnce(stubError);
+            expect(response).equal(failedResponse);
+        });
+        it('should throw error in case of page not found', async () => {
+            const failedResponse = {
+                status: 'ERROR',
+                data: { error: { code: 'ERR_NOT_FOUND', message: 'Page Not Found', description: '' } },
+            };
+            const error = {
+                code: AppConstants.ERROR_CODES.NOT_FOUND,
+            };
+            stubPetService.getPetById.throws(error);
+            const stubError = await sinon.stub(petController.appResponse, 'notFound')
+                .returns(failedResponse);
+            const response = await petController.getPetById(req as any, res as any);
+            sinon.assert.calledOnce(stubPetService.getPetById);
+            sinon.assert.calledOnce(stubError);
+            expect(response).equal(failedResponse);
+        });
+        it('should throw error in case of unprocessable entity', async () => {
+            const failedResponse = {
+                status: 'ERROR',
+                data: { error: { code: 'ERR_UNPROCESSABLE_ENTITY', message: 'Unprocessable Entity', description: '' } },
+            };
+            const error = {
+                code: AppConstants.ERROR_CODES.UNPROCESSABLE_ENTITY,
+            };
+            stubPetService.getPetById.throws(error);
+            const stubError = await sinon.stub(petController.appResponse, 'unprocessableEntity')
+                .returns(failedResponse);
+            const response = await petController.getPetById(req as any, res as any);
+            sinon.assert.calledOnce(stubPetService.getPetById);
+            sinon.assert.calledOnce(stubError);
+            expect(response).equal(failedResponse);
+        });
+    });
+
+    describe('get pets by Name Controller', () => {
+        before(() => {
+            req = {
+                params: {
+                    name: 'ANIMAL',
+                },
+            };
+        });
+        it('should return pets by name', async () => {
+            const successResponse = {
+                status: 'SUCCESS',
+                data: {
+                    pets: [
+                        {
+                            _id: 'sdfs',
+                            name: 'ANIMAL',
+                            category: {
+                                categoryName: 'ANIMAL_CATEGORY',
+                            },
+                            photoUrl: 'PHOTO',
+                            status: 'STATUS',
+                        },
+                    ],
+                },
+            };
+            const pets = [
+                {
+                    _id: 'sdfs',
+                    name: 'ANIMAL',
+                    category: {
+                        categoryName: 'ANIMAL_CATEGORY',
+                    },
+                    photoUrl: 'PHOTO',
+                    status: 'STATUS',
+                }];
+            await stubPetService.getPetByName.returns(pets);
+            const stubSuccess = await sinon.stub(petController.appResponse, 'success').returns(successResponse);
+            const response = await petController.getPetByName(req as any, res);
+            sinon.assert.calledOnce(stubPetService.getPetByName);
+            sinon.assert.calledOnce(stubSuccess);
+            expect(response).to.be.a('object');
+            expect(response.status).to.be.eql('SUCCESS');
+            expect(response.data).to.be.a('object');
+            expect(response.data.pets).to.be.an('array');
+            expect(response.data.pets).deep.equals(pets);
+            expect(response).equal(successResponse);
+        });
+
+        it('should throw error in case of service error', async () => {
+            const failedResponse = {
+                status: 'ERROR',
+                data: { error: { code: 'ERR_INTERNAL_SERVER_ERROR', message: 'Internal Server Error', description: '' } },
+            };
+            const error = {
+                code: AppConstants.ERROR_CODES.ERR_INTERNAL_SERVER_ERROR,
+            };
+            stubPetService.getPetByName.throws(error);
+            const stubError = await sinon.stub(petController.appResponse, 'error')
+                .returns(failedResponse);
+            const response = await petController.getPetByName(req as any, res as any);
+            sinon.assert.calledOnce(stubPetService.getPetByName);
+            sinon.assert.calledOnce(stubError);
+            expect(response).equal(failedResponse);
+        });
+        it('should throw error in case of page not found', async () => {
+            const failedResponse = {
+                status: 'ERROR',
+                data: { error: { code: 'ERR_NOT_FOUND', message: 'Page Not Found', description: '' } },
+            };
+            const error = {
+                code: AppConstants.ERROR_CODES.NOT_FOUND,
+            };
+            stubPetService.getPetByName.throws(error);
+            const stubError = await sinon.stub(petController.appResponse, 'notFound')
+                .returns(failedResponse);
+            const response = await petController.getPetByName(req as any, res as any);
+            sinon.assert.calledOnce(stubPetService.getPetByName);
+            sinon.assert.calledOnce(stubError);
+            expect(response).equal(failedResponse);
+        });
+        it('should throw error in case of unprocessable entity', async () => {
+            const failedResponse = {
+                status: 'ERROR',
+                data: { error: { code: 'ERR_UNPROCESSABLE_ENTITY', message: 'Unprocessable Entity', description: '' } },
+            };
+            const error = {
+                code: AppConstants.ERROR_CODES.UNPROCESSABLE_ENTITY,
+            };
+            stubPetService.getPetByName.throws(error);
+            const stubError = await sinon.stub(petController.appResponse, 'unprocessableEntity')
+                .returns(failedResponse);
+            const response = await petController.getPetByName(req as any, res as any);
+            sinon.assert.calledOnce(stubPetService.getPetByName);
+            sinon.assert.calledOnce(stubError);
+            expect(response).equal(failedResponse);
+        });
+    });
+
+    describe('Add pets Controller', () => {
+        before(() => {
+            req = {
+                body: {
+                    _id: 'sdfs',
+                    name: 'ANIMAL',
+                    category: {
+                        categoryName: 'ANIMAL_CATEGORY',
+                    },
+                    photoUrl: 'PHOTO',
+                    status: 'STATUS',
+                },
+            };
+        });
+        it('should add pet', async () => {
+            const successResponse = {
+                status: 'SUCCESS',
+                data: {
+                    pets: [
+                        {
+                            _id: 'sdfs',
+                            name: 'ANIMAL',
+                            category: {
+                                categoryName: 'ANIMAL_CATEGORY',
+                            },
+                            photoUrl: 'PHOTO',
+                            status: 'STATUS',
+                        },
+                    ],
+                },
+            };
+            const pets = [
+                {
+                    _id: 'sdfs',
+                    name: 'ANIMAL',
+                    category: {
+                        categoryName: 'ANIMAL_CATEGORY',
+                    },
+                    photoUrl: 'PHOTO',
+                    status: 'STATUS',
+                }];
+            await stubPetService.addPet.returns(pets);
+            const stubSuccess = await sinon.stub(petController.appResponse, 'success').returns(successResponse);
+            const response = await petController.addPet(req as any, res);
+            sinon.assert.calledOnce(stubPetService.addPet);
+            sinon.assert.calledOnce(stubSuccess);
+            expect(response).to.be.a('object');
+            expect(response.status).to.be.eql('SUCCESS');
+            expect(response.data).to.be.a('object');
+            expect(response.data.pets).to.be.an('array');
+            expect(response.data.pets).deep.equals(pets);
+            expect(response).equal(successResponse);
+        });
+
+        it('should throw error in case of service error', async () => {
+            const failedResponse = {
+                status: 'ERROR',
+                data: { error: { code: 'ERR_INTERNAL_SERVER_ERROR', message: 'Internal Server Error', description: '' } },
+            };
+            const error = {
+                code: AppConstants.ERROR_CODES.ERR_INTERNAL_SERVER_ERROR,
+            };
+            stubPetService.addPet.throws(error);
+            const stubError = await sinon.stub(petController.appResponse, 'error')
+                .returns(failedResponse);
+            const response = await petController.addPet(req as any, res as any);
+            sinon.assert.calledOnce(stubPetService.addPet);
+            sinon.assert.calledOnce(stubError);
+            expect(response).equal(failedResponse);
+        });
+        it('should throw error in case of unprocessable entity', async () => {
+            const failedResponse = {
+                status: 'ERROR',
+                data: { error: { code: 'ERR_UNPROCESSABLE_ENTITY', message: 'Unprocessable Entity', description: '' } },
+            };
+            const error = {
+                code: AppConstants.ERROR_CODES.UNPROCESSABLE_ENTITY,
+            };
+            stubPetService.addPet.throws(error);
+            const stubError = await sinon.stub(petController.appResponse, 'unprocessableEntity')
+                .returns(failedResponse);
+            const response = await petController.addPet(req as any, res as any);
+            sinon.assert.calledOnce(stubPetService.addPet);
+            sinon.assert.calledOnce(stubError);
+            expect(response).equal(failedResponse);
+        });
+    });
+
+    describe('Update pet by Id Controller', () => {
+        before(() => {
+            req = {
+                params: {
+                    _id: 'sdfs',
+                },
+            };
+        });
+        it('should update pet details by Id', async () => {
+            const successResponse = {
+                status: 'SUCCESS',
+                data: {
+                    pets: [
+                        {
+                            _id: 'sdfs',
+                            name: 'ANIMAL',
+                            category: {
+                                categoryName: 'ANIMAL_CATEGORY',
+                            },
+                            photoUrl: 'PHOTO',
+                            status: 'STATUS',
+                        },
+                    ],
+                },
+            };
+            const pets = [
+                {
+                    _id: 'sdfs',
+                    name: 'ANIMAL',
+                    category: {
+                        categoryName: 'ANIMAL_CATEGORY',
+                    },
+                    photoUrl: 'PHOTO',
+                    status: 'STATUS',
+                }];
+            await stubPetService.updatePet.returns(pets);
+            const stubSuccess = await sinon.stub(petController.appResponse, 'success').returns(successResponse);
+            const response = await petController.updatePet(req as any, res);
+            sinon.assert.calledOnce(stubPetService.updatePet);
+            sinon.assert.calledOnce(stubSuccess);
+            expect(response).to.be.a('object');
+            expect(response.status).to.be.eql('SUCCESS');
+            expect(response.data).to.be.a('object');
+            expect(response.data.pets).to.be.an('array');
+            expect(response.data.pets).deep.equals(pets);
+            expect(response).equal(successResponse);
+        });
+
+        it('should throw error in case of service error', async () => {
+            const failedResponse = {
+                status: 'ERROR',
+                data: { error: { code: 'ERR_INTERNAL_SERVER_ERROR', message: 'Internal Server Error', description: '' } },
+            };
+            const error = {
+                code: AppConstants.ERROR_CODES.ERR_INTERNAL_SERVER_ERROR,
+            };
+            stubPetService.updatePet.throws(error);
+            const stubError = await sinon.stub(petController.appResponse, 'error')
+                .returns(failedResponse);
+            const response = await petController.updatePet(req as any, res as any);
+            sinon.assert.calledOnce(stubPetService.updatePet);
+            sinon.assert.calledOnce(stubError);
+            expect(response).equal(failedResponse);
+        });
+        it('should throw error in case of unprocessable entity', async () => {
+            const failedResponse = {
+                status: 'ERROR',
+                data: { error: { code: 'ERR_UNPROCESSABLE_ENTITY', message: 'Unprocessable Entity', description: '' } },
+            };
+            const error = {
+                code: AppConstants.ERROR_CODES.UNPROCESSABLE_ENTITY,
+            };
+            stubPetService.updatePet.throws(error);
+            const stubError = await sinon.stub(petController.appResponse, 'unprocessableEntity')
+                .returns(failedResponse);
+            const response = await petController.updatePet(req as any, res as any);
+            sinon.assert.calledOnce(stubPetService.updatePet);
+            sinon.assert.calledOnce(stubError);
+            expect(response).equal(failedResponse);
+        });
+        it('should throw error in case of page not found', async () => {
+            const failedResponse = {
+                status: 'ERROR',
+                data: { error: { code: 'ERR_NOT_FOUND', message: 'Page Not Found', description: '' } },
+            };
+            const error = {
+                code: AppConstants.ERROR_CODES.NOT_FOUND,
+            };
+            stubPetService.updatePet.throws(error);
+            const stubError = await sinon.stub(petController.appResponse, 'notFound')
+                .returns(failedResponse);
+            const response = await petController.updatePet(req as any, res as any);
+            sinon.assert.calledOnce(stubPetService.updatePet);
+            sinon.assert.calledOnce(stubError);
+            expect(response).equal(failedResponse);
+        });
+    });
+
+    describe('Delete pet by Id Controller', () => {
+        before(() => {
+            req = {
+                params: {
+                    _id: 'sdfs',
+                },
+            };
+        });
+        it('should delete pet details by Id', async () => {
+            const successResponse = {
+                status: 'SUCCESS',
+                data: {
+                    pets: [
+                        {
+                            _id: 'sdfs',
+                            name: 'ANIMAL',
+                            category: {
+                                categoryName: 'ANIMAL_CATEGORY',
+                            },
+                            photoUrl: 'PHOTO',
+                            status: 'STATUS',
+                        },
+                    ],
+                },
+            };
+            const pets = [
+                {
+                    _id: 'sdfs',
+                    name: 'ANIMAL',
+                    category: {
+                        categoryName: 'ANIMAL_CATEGORY',
+                    },
+                    photoUrl: 'PHOTO',
+                    status: 'STATUS',
+                }];
+            await stubPetService.deletePet.returns(pets);
+            const stubSuccess = await sinon.stub(petController.appResponse, 'success').returns(successResponse);
+            const response = await petController.deletePet(req as any, res);
+            sinon.assert.calledOnce(stubPetService.deletePet);
+            sinon.assert.calledOnce(stubSuccess);
+            expect(response).to.be.a('object');
+            expect(response.status).to.be.eql('SUCCESS');
+            expect(response.data).to.be.a('object');
+            expect(response.data.pets).to.be.an('array');
+            expect(response.data.pets).deep.equals(pets);
+            expect(response).equal(successResponse);
+        });
+
+        it('should throw error in case of service error', async () => {
+            const failedResponse = {
+                status: 'ERROR',
+                data: { error: { code: 'ERR_INTERNAL_SERVER_ERROR', message: 'Internal Server Error', description: '' } },
+            };
+            const error = {
+                code: AppConstants.ERROR_CODES.ERR_INTERNAL_SERVER_ERROR,
+            };
+            stubPetService.deletePet.throws(error);
+            const stubError = await sinon.stub(petController.appResponse, 'error')
+                .returns(failedResponse);
+            const response = await petController.deletePet(req as any, res as any);
+            sinon.assert.calledOnce(stubPetService.deletePet);
+            sinon.assert.calledOnce(stubError);
+            expect(response).equal(failedResponse);
+        });
+        it('should throw error in case of unprocessable entity', async () => {
+            const failedResponse = {
+                status: 'ERROR',
+                data: { error: { code: 'ERR_UNPROCESSABLE_ENTITY', message: 'Unprocessable Entity', description: '' } },
+            };
+            const error = {
+                code: AppConstants.ERROR_CODES.UNPROCESSABLE_ENTITY,
+            };
+            stubPetService.deletePet.throws(error);
+            const stubError = await sinon.stub(petController.appResponse, 'unprocessableEntity')
+                .returns(failedResponse);
+            const response = await petController.deletePet(req as any, res as any);
+            sinon.assert.calledOnce(stubPetService.deletePet);
+            sinon.assert.calledOnce(stubError);
+            expect(response).equal(failedResponse);
+        });
+        it('should throw error in case of page not found', async () => {
+            const failedResponse = {
+                status: 'ERROR',
+                data: { error: { code: 'ERR_NOT_FOUND', message: 'Page Not Found', description: '' } },
+            };
+            const error = {
+                code: AppConstants.ERROR_CODES.NOT_FOUND,
+            };
+            stubPetService.deletePet.throws(error);
+            const stubError = await sinon.stub(petController.appResponse, 'notFound')
+                .returns(failedResponse);
+            const response = await petController.deletePet(req as any, res as any);
+            sinon.assert.calledOnce(stubPetService.deletePet);
+            sinon.assert.calledOnce(stubError);
+            expect(response).equal(failedResponse);
+        });
+    });
 });
