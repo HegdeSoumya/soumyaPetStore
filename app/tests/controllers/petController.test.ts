@@ -68,22 +68,10 @@ describe('Pet Controller Test', () => {
             expect(response).equal(successResponse);
         });
 
-        it('should throw error in case of service error', async () => {
-            req = {};
-            const failedResponse = {
-                status: 'ERROR',
-                data: { error: { code: 'ERR_INTERNAL_SERVER_ERROR', message: 'Internal Server Error', description: '' } },
-            };
-            const error = {
-                code: AppConstants.ERROR_CODES.ERR_INTERNAL_SERVER_ERROR,
-            };
-            stubPetService.getPet.throws(error);
-            const stubError = await sinon.stub(petController.appResponse, 'error')
-                .returns(failedResponse);
-            const response = await petController.getPet(req as any, res as any);
-            sinon.assert.calledOnce(stubPetService.getPet);
-            sinon.assert.calledOnce(stubError);
-            expect(response).equal(failedResponse);
+        it('should throw error', async () => {
+            const error = new Error();
+            await stubPetService.getPet.throws(error);
+            await expect(petController.getPet(req as any, res as any)).to.be.rejected;
         });
         it('should throw error in case of page not found', async () => {
             req = {};
@@ -169,21 +157,10 @@ describe('Pet Controller Test', () => {
             expect(response).equal(successResponse);
         });
 
-        it('should throw error in case of service error', async () => {
-            const failedResponse = {
-                status: 'ERROR',
-                data: { error: { code: 'ERR_INTERNAL_SERVER_ERROR', message: 'Internal Server Error', description: '' } },
-            };
-            const error = {
-                code: AppConstants.ERROR_CODES.ERR_INTERNAL_SERVER_ERROR,
-            };
-            stubPetService.getPetById.throws(error);
-            const stubError = await sinon.stub(petController.appResponse, 'error')
-                .returns(failedResponse);
-            const response = await petController.getPetById(req as any, res as any);
-            sinon.assert.calledOnce(stubPetService.getPetById);
-            sinon.assert.calledOnce(stubError);
-            expect(response).equal(failedResponse);
+        it('should throw error', async () => {
+            const error = new Error();
+            await stubPetService.getPetById.throws(error);
+            await expect(petController.getPetById(req as any, res as any)).to.be.rejected;
         });
         it('should throw error in case of page not found', async () => {
             const failedResponse = {
@@ -267,21 +244,10 @@ describe('Pet Controller Test', () => {
             expect(response).equal(successResponse);
         });
 
-        it('should throw error in case of service error', async () => {
-            const failedResponse = {
-                status: 'ERROR',
-                data: { error: { code: 'ERR_INTERNAL_SERVER_ERROR', message: 'Internal Server Error', description: '' } },
-            };
-            const error = {
-                code: AppConstants.ERROR_CODES.ERR_INTERNAL_SERVER_ERROR,
-            };
-            stubPetService.getPetByName.throws(error);
-            const stubError = await sinon.stub(petController.appResponse, 'error')
-                .returns(failedResponse);
-            const response = await petController.getPetByName(req as any, res as any);
-            sinon.assert.calledOnce(stubPetService.getPetByName);
-            sinon.assert.calledOnce(stubError);
-            expect(response).equal(failedResponse);
+        it('should throw error', async () => {
+            const error = new Error();
+            await stubPetService.getPetByName.throws(error);
+            await expect(petController.getPetByName(req as any, res as any)).to.be.rejected;
         });
         it('should throw error in case of page not found', async () => {
             const failedResponse = {
@@ -371,21 +337,10 @@ describe('Pet Controller Test', () => {
             expect(response).equal(successResponse);
         });
 
-        it('should throw error in case of service error', async () => {
-            const failedResponse = {
-                status: 'ERROR',
-                data: { error: { code: 'ERR_INTERNAL_SERVER_ERROR', message: 'Internal Server Error', description: '' } },
-            };
-            const error = {
-                code: AppConstants.ERROR_CODES.ERR_INTERNAL_SERVER_ERROR,
-            };
-            stubPetService.addPet.throws(error);
-            const stubError = await sinon.stub(petController.appResponse, 'error')
-                .returns(failedResponse);
-            const response = await petController.addPet(req as any, res as any);
-            sinon.assert.calledOnce(stubPetService.addPet);
-            sinon.assert.calledOnce(stubError);
-            expect(response).equal(failedResponse);
+        it('should throw error', async () => {
+            const error = new Error();
+            await stubPetService.addPet.throws(error);
+            await expect(petController.addPet(req as any, res as any)).to.be.rejected;
         });
         it('should throw error in case of unprocessable entity', async () => {
             const failedResponse = {
@@ -453,21 +408,10 @@ describe('Pet Controller Test', () => {
             expect(response).equal(successResponse);
         });
 
-        it('should throw error in case of service error', async () => {
-            const failedResponse = {
-                status: 'ERROR',
-                data: { error: { code: 'ERR_INTERNAL_SERVER_ERROR', message: 'Internal Server Error', description: '' } },
-            };
-            const error = {
-                code: AppConstants.ERROR_CODES.ERR_INTERNAL_SERVER_ERROR,
-            };
-            stubPetService.updatePet.throws(error);
-            const stubError = await sinon.stub(petController.appResponse, 'error')
-                .returns(failedResponse);
-            const response = await petController.updatePet(req as any, res as any);
-            sinon.assert.calledOnce(stubPetService.updatePet);
-            sinon.assert.calledOnce(stubError);
-            expect(response).equal(failedResponse);
+        it('should throw error', async () => {
+            const error = new Error();
+            await stubPetService.updatePet.throws(error);
+            await expect(petController.updatePet(req as any, res as any)).to.be.rejected;
         });
         it('should throw error in case of unprocessable entity', async () => {
             const failedResponse = {
@@ -551,21 +495,10 @@ describe('Pet Controller Test', () => {
             expect(response).equal(successResponse);
         });
 
-        it('should throw error in case of service error', async () => {
-            const failedResponse = {
-                status: 'ERROR',
-                data: { error: { code: 'ERR_INTERNAL_SERVER_ERROR', message: 'Internal Server Error', description: '' } },
-            };
-            const error = {
-                code: AppConstants.ERROR_CODES.ERR_INTERNAL_SERVER_ERROR,
-            };
-            stubPetService.deletePet.throws(error);
-            const stubError = await sinon.stub(petController.appResponse, 'error')
-                .returns(failedResponse);
-            const response = await petController.deletePet(req as any, res as any);
-            sinon.assert.calledOnce(stubPetService.deletePet);
-            sinon.assert.calledOnce(stubError);
-            expect(response).equal(failedResponse);
+        it('should throw error', async () => {
+            const error = new Error();
+            await stubPetService.deletePet.throws(error);
+            await expect(petController.deletePet(req as any, res as any)).to.be.rejected;
         });
         it('should throw error in case of unprocessable entity', async () => {
             const failedResponse = {

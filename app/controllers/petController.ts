@@ -31,12 +31,6 @@ export class PetController extends BaseController {
                         error.code,
                         res.__(error.message),
                     );
-                } else if (error.code === AppConstants.ERROR_CODES.ERR_INTERNAL_SERVER_ERROR) {
-                    return this.appResponse.error(
-                        res,
-                        error.code,
-                        res.__(error.message),
-                    );
                 } else {
                     throw error;
                 }
@@ -53,12 +47,6 @@ export class PetController extends BaseController {
             if (error) {
                 if (error.code === AppConstants.ERROR_CODES.NOT_FOUND) {
                     return this.appResponse.notFound(
-                        res,
-                        error.code,
-                        res.__(error.message),
-                    );
-                } else if (error.code === AppConstants.ERROR_CODES.ERR_INTERNAL_SERVER_ERROR) {
-                    return this.appResponse.error(
                         res,
                         error.code,
                         res.__(error.message),
@@ -92,13 +80,7 @@ export class PetController extends BaseController {
             return this.appResponse.success(res, {newPet});
         } catch (error) {
             if (error) {
-                if (error.code === AppConstants.ERROR_CODES.ERR_INTERNAL_SERVER_ERROR) {
-                    return this.appResponse.error(
-                        res,
-                        error.code,
-                        res.__(error.message),
-                    );
-                } else if (error.code === AppConstants.ERROR_CODES.UNPROCESSABLE_ENTITY) {
+                 if (error.code === AppConstants.ERROR_CODES.UNPROCESSABLE_ENTITY) {
                     return this.appResponse.unprocessableEntity(
                         res,
                         error.code,
@@ -121,12 +103,6 @@ export class PetController extends BaseController {
             if (error) {
                 if (error.code === AppConstants.ERROR_CODES.NOT_FOUND) {
                     return this.appResponse.notFound(
-                        res,
-                        error.code,
-                        res.__(error.message),
-                    );
-                } else if (error.code === AppConstants.ERROR_CODES.ERR_INTERNAL_SERVER_ERROR) {
-                    return this.appResponse.error(
                         res,
                         error.code,
                         res.__(error.message),
@@ -157,12 +133,6 @@ export class PetController extends BaseController {
                         error.code,
                         res.__(error.message),
                     );
-                } else if (error.code === AppConstants.ERROR_CODES.ERR_INTERNAL_SERVER_ERROR) {
-                    return this.appResponse.error(
-                        res,
-                        error.code,
-                        res.__(error.message),
-                    );
                 } else if (error.code === AppConstants.ERROR_CODES.UNPROCESSABLE_ENTITY) {
                     return this.appResponse.unprocessableEntity(
                         res,
@@ -186,12 +156,6 @@ export class PetController extends BaseController {
             if (error) {
                 if (error.code === AppConstants.ERROR_CODES.NOT_FOUND) {
                     return this.appResponse.notFound(
-                        res,
-                        error.code,
-                        res.__(error.message),
-                    );
-                } else if (error.code === AppConstants.ERROR_CODES.ERR_INTERNAL_SERVER_ERROR) {
-                    return this.appResponse.error(
                         res,
                         error.code,
                         res.__(error.message),
