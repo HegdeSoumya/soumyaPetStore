@@ -16,7 +16,7 @@ export class AppResponse {
         });
     }
 
-    public error = (res: Response, code: string, message: string, description: string = '') => {
+    public error = (res: Response, code: string, message: string, description: string) => {
         res.status(this.INTERNAL_SERVER_ERROR).send({
             status: 'ERROR',
             data: {
@@ -29,7 +29,7 @@ export class AppResponse {
         });
     }
 
-    public unprocessableEntity = (res: Response, code: string, message: string, description: string = '') => {
+    public unprocessableEntity = (res: Response, code: string, message: string, description: string) => {
         res.status(this.UNPROCESSABLE_ENTITY).send({
             status: 'FAILURE',
             data: {
@@ -42,7 +42,7 @@ export class AppResponse {
         });
     }
 
-    public badRequest = (res: Response, code: string, message: string, description: string = '') => {
+    public badRequest = (res: Response, code: string, message: string, description: string) => {
         res.status(this.BAD_REQUEST).send({
             status: 'FAILURE',
             data: {
@@ -55,7 +55,7 @@ export class AppResponse {
         });
     }
 
-    public conflict = (res: Response, code: string, message: string, description: string = '') => {
+    public conflict = (res: Response, code: string, message: string, description: string) => {
         res.status(this.CONFLICT).send({
             status: 'FAILURE',
             data: {
@@ -72,7 +72,7 @@ export class AppResponse {
         res.status(this.NO_CONTENT).send({});
     }
 
-    public notFound = (res: Response, code: string, message: string, description: string = '') => {
+    public notFound = (res: Response, code: string, message: string, description: string) => {
         res.status(this.NOT_FOUND).send({
             status: 'FAILURE',
             data: {

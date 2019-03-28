@@ -24,12 +24,14 @@ export class PetController extends BaseController {
                         res,
                         error.code,
                         res.__(error.message),
+                        res.__(error.description),
                     );
                 } else if (error.code === AppConstants.ERROR_CODES.NOT_FOUND) {
                     return this.appResponse.notFound(
                         res,
                         error.code,
                         res.__(error.message),
+                        res.__(error.description),
                     );
                 } else {
                     throw error;
@@ -50,12 +52,14 @@ export class PetController extends BaseController {
                         res,
                         error.code,
                         res.__(error.message),
+                        res.__(error.description),
                     );
                 } else if (error.code === AppConstants.ERROR_CODES.UNPROCESSABLE_ENTITY) {
                     return this.appResponse.unprocessableEntity(
                         res,
                         error.code,
                         res.__(error.message),
+                        res.__(error.description),
                     );
                 } else {
                     throw error;
@@ -85,6 +89,7 @@ export class PetController extends BaseController {
                         res,
                         error.code,
                         res.__(error.message),
+                        res.__(error.description),
                     );
                 } else {
                     throw error;
@@ -106,12 +111,14 @@ export class PetController extends BaseController {
                         res,
                         error.code,
                         res.__(error.message),
+                        res.__(error.description),
                     );
                 } else if (error.code === AppConstants.ERROR_CODES.UNPROCESSABLE_ENTITY) {
                     return this.appResponse.unprocessableEntity(
                         res,
                         error.code,
                         res.__(error.message),
+                        res.__(error.description),
                     );
                 } else {
                     throw error;
@@ -132,12 +139,14 @@ export class PetController extends BaseController {
                         res,
                         error.code,
                         res.__(error.message),
+                        res.__(error.description),
                     );
                 } else if (error.code === AppConstants.ERROR_CODES.UNPROCESSABLE_ENTITY) {
                     return this.appResponse.unprocessableEntity(
                         res,
                         error.code,
                         res.__(error.message),
+                        res.__(error.description),
                     );
                 } else {
                     throw error;
@@ -159,12 +168,14 @@ export class PetController extends BaseController {
                         res,
                         error.code,
                         res.__(error.message),
+                        res.__(error.description),
                     );
                 } else if (error.code === AppConstants.ERROR_CODES.UNPROCESSABLE_ENTITY) {
                     return this.appResponse.unprocessableEntity(
                         res,
                         error.code,
                         res.__(error.message),
+                        res.__(error.description),
                     );
                 } else {
                     throw error;
