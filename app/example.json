@@ -1,0 +1,199 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "PET STORE",
+      "description": "Node.js Application API for Pet Store",
+      "license": {
+        "name": "Soumya",
+        "url": "https://opensource.org/licenses/MIT"
+      }
+    },
+    "host": "localhost:3000",
+    "basePath": "/",
+    "tags": [
+      {
+        "name": "Pets",
+        "description": "API for pets in the system"
+      }
+    ],
+    "schemes": [
+      "http"
+    ],
+    "consumes": [
+      "application/json"
+    ],
+    "produces": [
+      "application/json"
+    ],
+    "paths": {
+      "/pets": {
+        "post": {
+          "tags": [
+            "Pets"
+          ],
+          "description": "Create new pet in system",
+          "parameters": [
+            {
+              "name": "pet",
+              "in": "body",
+              "description": "Pet details that we want to enter",
+              "schema": {
+                "$ref": "#/definitions/Pet"
+              }
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "New pet is created",
+              "schema": {
+                "$ref": "#/definitions/Pet"
+              }
+            }
+          }
+        },
+        "get": {
+          "tags": [
+            "Pets"
+          ],
+          "summary": "Get all pets in system",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/Pets"
+              }
+            }
+          }
+        }
+      },
+      "/pets/ById/{petId}": {
+        "parameters": [
+          {
+            "name": "petId",
+            "in": "path",
+            "required": true,
+            "description": "ID of pet that we want to find",
+            "type": "string"
+          }
+        ],
+        "get": {
+          "tags": [
+            "Pets"
+          ],
+          "summary": "Get pet with given ID",
+          "responses": {
+            "200": {
+              "description": "Pet is found",
+              "schema": {
+                "$ref": "#/definitions/Pet"
+              }
+            }
+          }
+        }
+      },
+     "/pets/ByName/{petName}": {
+      "parameters": [
+        {
+          "name": "petName",
+          "in": "path",
+          "required": true,
+          "description": "Name of pet that we want to find",
+          "type": "string"
+        }
+      ],
+      "get": {
+        "tags": [
+          "Pets"
+        ],
+        "summary": "Get pet with given name",
+        "responses": {
+          "200": {
+            "description": "Pet is found",
+            "schema": {
+              "$ref": "#/definitions/Pet"
+            }
+          }
+        }
+      }
+     },
+     "/pets/{petId}": {
+      "parameters": [
+        {
+          "name": "petId",
+          "in": "path",
+          "required": true,
+          "description": "ID of pet that we want to find",
+          "type": "string"
+        }
+      ],
+      "delete": {
+        "summary": "Delete pet details with given ID",
+        "tags": [
+          "Pets"
+        ],
+        "responses": {
+          "200": {
+            "description": "Pet is deleted",
+            "schema": {
+              "$ref": "#/definitions/Pet"
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update petDetails with give ID",
+        "tags": [
+          "Pets"
+        ],
+        "parameters": [
+          {
+            "name": "pet",
+            "in": "body",
+            "description": "Pet with new values of properties",
+            "schema": {
+              "$ref": "#/definitions/Pet"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Pet is updated",
+            "schema": {
+              "$ref": "#/definitions/Pet"
+            }
+          }
+        }
+      }
+     }
+    },
+    "definitions": {
+      "Pet": {
+        "properties": {
+          "category": {
+              "categoryName": {
+              "type": "string",
+              "uniqueItems": true
+              }
+          },
+          "name": {
+            "type": "string"
+          },
+          "photoUrl": {
+            "type": "string"
+          },
+          "status": {
+              "type": "string"
+          }
+        }
+      },
+      "Pets": {
+        "type": "array",
+        "$ref": "#/definitions/Pet"
+      }
+    }
+  }
+  

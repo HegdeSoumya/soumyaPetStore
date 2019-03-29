@@ -33,9 +33,12 @@
           "Pets"
         ],
         "description": "Create new pet in system",
+        "consumes": [
+          "application/json"
+        ],
         "parameters": [
           {
-            "name": "pet",
+            "name": "body",
             "in": "body",
             "description": "Pet details that we want to enter",
             "schema": {
@@ -52,6 +55,9 @@
             "schema": {
               "$ref": "#/definitions/Pet"
             }
+          },
+          "405": {
+            "description": "Invalid Input"
           }
         }
       },
@@ -60,12 +66,21 @@
           "Pets"
         ],
         "summary": "Get all pets in system",
+        "produces": [
+          "application/json"
+        ],
         "responses": {
           "200": {
             "description": "OK",
             "schema": {
               "$ref": "#/definitions/Pets"
             }
+          },
+          "404": {
+            "description": "Pet not found"
+          },
+          "400": {
+            "description": "Invalid ID supplied"
           }
         }
       }
@@ -85,12 +100,21 @@
           "Pets"
         ],
         "summary": "Get pet with given ID",
+        "produces": [
+          "application/json"
+        ],
         "responses": {
           "200": {
             "description": "Pet is found",
             "schema": {
               "$ref": "#/definitions/Pet"
             }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Pet not found"
           }
         }
       }
@@ -110,12 +134,18 @@
         "Pets"
       ],
       "summary": "Get pet with given name",
+      "produces": [
+        "application/json"
+      ],
       "responses": {
         "200": {
           "description": "Pet is found",
           "schema": {
             "$ref": "#/definitions/Pet"
           }
+        },
+        "400": {
+          "description": "Invalid name"
         }
       }
     }
@@ -141,19 +171,33 @@
           "schema": {
             "$ref": "#/definitions/Pet"
           }
+        },
+        "400": {
+          "description": "Invalid ID supplied"
+        },
+        "404": {
+          "description": "Pet not found"
         }
       }
     },
     "put": {
-      "summary": "Update petDetails with give ID",
       "tags": [
         "Pets"
       ],
+      "summary": "Update petDetails with given ID",
+      "operationId": "updatePet",
+      "consumes": [
+        "application/json"
+      ],
+      "produces": [
+        "application/json"
+      ],
       "parameters": [
         {
-          "name": "pet",
           "in": "body",
+          "name": "body",
           "description": "Pet with new values of properties",
+          "required": true,
           "schema": {
             "$ref": "#/definitions/Pet"
           }
@@ -165,19 +209,38 @@
           "schema": {
             "$ref": "#/definitions/Pet"
           }
+        },
+        "400": {
+          "description": "Invalid ID supplied"
+        },
+        "404": {
+          "description": "Pet not found"
+        },
+        "405": {
+          "description": "Validation exception"
         }
       }
     }
    }
   },
   "definitions": {
+    "Category": {
+      "type": "object",
+      "properties": {
+        "categoryName": {
+          "type": "string"
+        }
+      }
+    },
     "Pet": {
+      "type": "object",
+      "required": [
+        "name",
+        "photoUrl"
+      ],
       "properties": {
         "category": {
-            "categoryName": {
-            "type": "string",
-            "uniqueItems": true
-            }
+          "$ref": "#definitions/Category"
         },
         "name": {
           "type": "string"
@@ -186,13 +249,15 @@
           "type": "string"
         },
         "status": {
-            "type": "string"
+          "type": "string",
+          "description": "pet status in the store",
+          "enum": [
+            "available",
+            "pending",
+            "sold"
+          ]
         }
       }
-    },
-    "Pets": {
-      "type": "array",
-      "$ref": "#/definitions/Pet"
     }
   }
 }
