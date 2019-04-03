@@ -2,6 +2,8 @@ import chai from 'chai';
 import sinon from 'sinon';
 import { PetRepository } from './../../repositories/petRepository';
 import { PetService } from './../../services/petService';
+import ServiceError from '../../errors/ServiceError';
+import appConstants from '../../constants/appConstants';
 const expect = chai.expect;
 
 describe('Pet Service Test', () => {
@@ -41,33 +43,33 @@ describe('Pet Service Test', () => {
         });
     });
 
-    describe('gets pets by ID from repository', () => {
+    // describe('gets pets by ID from repository', () => {
 
-        it('should return pets by ID from repository', async () => {
-            stubPetRepository.getPetById.returns(pets);
-            const response = await new PetService(stubPetRepository).getPetById(pets[0].id);
-            sinon.assert.calledOnce(stubPetRepository.getPetById);
+    //     it('should return pets by ID from repository', async () => {
+    //         stubPetRepository.getPetById.returns(pets);
+    //         const response = await new PetService(stubPetRepository).getPetById(pets[0].id);
+    //         sinon.assert.calledOnce(stubPetRepository.getPetById);
+    //         expect(response).equals(pets);
+    //     });
+    //     it('should catch error', async () => {
+    //         const error = new Error();
+    //         await stubPetRepository.getPetById.throws(error);
+    //         await expect(new PetService(stubPetRepository).getPetById(pets[0].id)).to.be.rejected;
+    //     });
+    // });
+
+    describe('get pets by Search from repository', () => {
+
+        it('should return pets by Search from Repository', async () => {
+            stubPetRepository.getPetBySearch.returns(pets);
+            const response = await new PetService(stubPetRepository).getPetBySearch(pets[0].id, pets[0].name);
+            sinon.assert.calledOnce(stubPetRepository.getPetBySearch);
             expect(response).equals(pets);
         });
         it('should catch error', async () => {
             const error = new Error();
-            await stubPetRepository.getPetById.throws(error);
-            await expect(new PetService(stubPetRepository).getPetById(pets[0].id)).to.be.rejected;
-        });
-    });
-
-    describe('get pets by Name from repository', () => {
-
-        it('should return pets by Name from Repository', async () => {
-            stubPetRepository.getPetByName.returns(pets);
-            const response = await new PetService(stubPetRepository).getPetByName(pets[0].name);
-            sinon.assert.calledOnce(stubPetRepository.getPetByName);
-            expect(response).equals(pets);
-        });
-        it('should catch error', async () => {
-            const error = new Error();
-            await stubPetRepository.getPetByName.throws(error);
-            await expect(new PetService(stubPetRepository).getPetByName(pets[0].name)).to.be.rejected;
+            await stubPetRepository.getPetBySearch.throws(error);
+            await expect(new PetService(stubPetRepository).getPetBySearch(pets[0].id, pets[0].name)).to.be.rejected;
         });
     });
 
@@ -95,7 +97,10 @@ describe('Pet Service Test', () => {
             expect(response).equals(pets);
         });
         it('should catch error', async () => {
-            const error = new Error();
+            const error = new ServiceError (
+                appConstants.ERROR_CODES.NOT_FOUND,
+                appConstants.ERROR_MESSAGES.NOT_FOUND,
+            );
             await stubPetRepository.updatePet.throws(error);
             await expect(new PetService(stubPetRepository).updatePet(pets[0].id, pets)).to.be.rejected;
         });

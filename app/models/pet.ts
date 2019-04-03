@@ -5,11 +5,23 @@ export const petSchema = new Schema({
     _id: mongoose.Schema.Types.ObjectId,
     category: {
         categoryId: mongoose.Schema.Types.ObjectId,
-        categoryName: String,
+        categoryName: {
+            type: String,
+            required: true,
+        },
     },
-    name: String,
-    photoUrl: String,
-    status: String,
+    name: {
+        type: String,
+        required: true,
+    },
+    photoUrl: {
+        type: String,
+        required: true,
+    },
+    status: {
+        type: String,
+        required: true,
+    },
     created_date: {
         type: Date,
         default: Date.now,

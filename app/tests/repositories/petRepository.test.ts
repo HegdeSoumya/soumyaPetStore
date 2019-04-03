@@ -28,25 +28,25 @@ describe('Pet Repository Test', () => {
         sinon.assert.calledOnce(stubPetModel.find);
         expect(response).equals(pets);
     });
-    it('should return pet by ID from database', async () => {
-        const pets = [
-            {
-                id: 'dfsf',
-                name: 'ANIMAL',
-                category: {
-                    categoryId: 'sdfds',
-                    categoryName: 'ANIMAL_CATEGORY',
-                },
-                photoUrl: 'PHOTO',
-                status: 'STATUS',
-            },
-        ];
-        stubPetModel.findById.returns(pets);
-        const response = await new PetRepository().getPetById(pets[0].id);
-        sinon.assert.calledOnce(stubPetModel.findById);
-        expect(response).equals(pets);
-    });
-    it('should return pet by name from database', async () => {
+    // it('should return pet by ID from database', async () => {
+    //     const pets = [
+    //         {
+    //             id: 'dfsf',
+    //             name: 'ANIMAL',
+    //             category: {
+    //                 categoryId: 'sdfds',
+    //                 categoryName: 'ANIMAL_CATEGORY',
+    //             },
+    //             photoUrl: 'PHOTO',
+    //             status: 'STATUS',
+    //         },
+    //     ];
+    //     stubPetModel.findById.returns(pets);
+    //     const response = await new PetRepository().getPetById(pets[0].id);
+    //     sinon.assert.calledOnce(stubPetModel.findById);
+    //     expect(response).equals(pets);
+    // });
+    it('should return pet by search by id and name from database', async () => {
         const pets = [
             {
                 id: 'dfsf',
@@ -60,8 +60,45 @@ describe('Pet Repository Test', () => {
             },
         ];
         stubPetModel.find.returns(pets);
-        const response = await new PetRepository().getPetByName(pets[0].name);
+        const response = await new PetRepository().getPetBySearch(pets[0].id, pets[0].name);
         sinon.assert.calledTwice(stubPetModel.find);
+        expect(response).equals(pets);
+    });
+    it('should return pet by search by id from database', async () => {
+        const pets = [
+            {
+                id: 'dfsf',
+                name: 'ANIMAL',
+                category: {
+                    categoryId: 'sdfds',
+                    categoryName: 'ANIMAL_CATEGORY',
+                },
+                photoUrl: 'PHOTO',
+                status: 'STATUS',
+            },
+        ];
+        stubPetModel.find.returns(pets);
+        const response = await new PetRepository().getPetBySearch(pets[0].id, undefined);
+        sinon.assert.calledThrice(stubPetModel.find);
+        expect(response).equals(pets);
+    });
+
+    it('should return pet by search by name from database', async () => {
+        const pets = [
+            {
+                id: 'dfsf',
+                name: 'ANIMAL',
+                category: {
+                    categoryId: 'sdfds',
+                    categoryName: 'ANIMAL_CATEGORY',
+                },
+                photoUrl: 'PHOTO',
+                status: 'STATUS',
+            },
+        ];
+        stubPetModel.find.returns(pets);
+        const response = await new PetRepository().getPetBySearch(undefined, pets[0].name);
+        sinon.assert.callCount(stubPetModel.find, 4);
         expect(response).equals(pets);
     });
     it('should create pets and store in databasee', async () => {

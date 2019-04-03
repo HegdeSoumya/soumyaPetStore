@@ -5,16 +5,29 @@ export class PetRepository {
         return Pet.find({});
     }
 
-    public getPetById = (id: string) => {
-        return Pet.findById(id);
-    }
+    // public getPetById = (id: string) => {
+    //     return Pet.findById(id);
+    // }
 
     public addPet = (newPet: any) => {
         return Pet.create(newPet);
     }
 
-    public getPetByName = (name: string) => {
-        return Pet.find({name: {$regex: name}});
+    // public getPetByName = (name: string) => {
+    //     return Pet.find({name: {$regex: name}});
+    // }
+
+    public getPetBySearch = (id: string, name: string) => {
+        if (id && name) {
+            return Pet.find({_id: id, name: {$regex: '^' + name}});
+        } else {
+            if (id) {
+                return Pet.find({_id: id});
+            }
+            if (name) {
+                return Pet.find({name: {$regex: name}});
+            }
+        }
     }
 
     public deletePet = (id: string) => {
@@ -22,7 +35,7 @@ export class PetRepository {
     }
 
     public updatePet = (id: string, body: any) => {
-        return Pet.findByIdAndUpdate({_id: id}, {$set: body});
+        return Pet.findByIdAndUpdate({_id: id}, {$set: body}, {new: true});
     }
 
 }
