@@ -204,10 +204,6 @@ export class PetController extends BaseController {
             //         appConstants.ERROR_MESSAGES.NOT_FOUND,
             //     );
             // }
-            if (!pet) {
-                throw new ServiceError(appConstants.ERROR_CODES.NOT_FOUND,
-                    appConstants.ERROR_MESSAGES.NOT_FOUND);
-            }
             return this.appResponse.success(res, { pet });
         } catch (error) {
             if (error instanceof ServiceError) {

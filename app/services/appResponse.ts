@@ -16,7 +16,7 @@ export class AppResponse {
         });
     }
 
-    public error = (res: Response, code: string, message: string, description: string = '') => {
+    public error = (res: Response, code: string, message: string, description: string) => {
         res.status(this.INTERNAL_SERVER_ERROR).send({
             status: 'ERROR',
             data: {
